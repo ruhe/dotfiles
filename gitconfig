@@ -1,0 +1,12 @@
+[user]
+	email = rkamaldinov@mirantis.com
+	name = Ruslan Kamaldinov
+[core]
+    editor = emacs
+[color]
+      ui = auto
+[alias]
+        st = status
+        ca = commit
+        co = checkout
+        br = branch
