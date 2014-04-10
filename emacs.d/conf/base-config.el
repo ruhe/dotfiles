@@ -31,26 +31,26 @@
       backup-directory-alist `(("." . ,(expand-file-name
 					     (concat dotfiles-dir "backups")))))
 
+;; themes
 (setq ns-use-srgb-colorspace t)
+(load-theme 'wombat)
 
 (set-default 'imenu-auto-rescan t)
 
-(defun clear-shell ()
-   (interactive)
-   (let ((old-max comint-buffer-maximum-size))
-     (setq comint-buffer-maximum-size 0)
-     (comint-truncate-buffer)
-     (setq comint-buffer-maximum-size old-max)))
-
-(global-set-key (kbd "\C-c M-o") 'clear-shell)
+;; hotkeys
 (global-set-key [f3] 'kill-this-buffer)
 (global-set-key [f5] 'find-name-dired)
 
-
+;; manage whiespace and margin
 (require 'whitespace)
-(setq whitespace-line-column 80) ;; limit line length
+(setq whitespace-line-column 80)
 (setq whitespace-style '(face lines-tail))
 (add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; configure dired to hide uninteresting files
+(require 'dired-x)
+(setq-default dired-omit-files-p t)
+(setq dired-omit-files "^\\.[^.]\\|\\.pyc$")
 
 (provide 'base-config)
