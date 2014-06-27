@@ -1,6 +1,7 @@
 [user]
 	name = Ruslan Kamaldinov
 	email = rkamaldinov@mirantis.com
+	signingkey = C135ADD6
 
 [core]
 	editor = emacs

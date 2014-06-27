@@ -33,7 +33,6 @@
 
 ;; themes
 (setq ns-use-srgb-colorspace t)
-(load-theme 'wombat)
 
 (set-default 'imenu-auto-rescan t)
 
@@ -52,5 +51,7 @@
 (require 'dired-x)
 (setq-default dired-omit-files-p t)
 (setq dired-omit-files "^\\.[^.]\\|\\.pyc$")
+
+(setq-default global-font-lock-mode nil)
 
 (provide 'base-config)
