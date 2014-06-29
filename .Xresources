@@ -1,7 +1,7 @@
 URxvt.geometry: 80x30
 
-URxvt.font: xft:Source Code Pro:size=11
-URxvt.boldFont: xft:Source Code Pro:size=11
+URxvt.font: xft:Monaco:size=11
+URxvt.boldFont: xft:Monaco:size=11
 
 
 Xft.hinting: true
