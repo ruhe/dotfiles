@@ -28,8 +28,7 @@
       ido-use-filename-at-point 'guess
       ido-max-prospects 10
       ido-save-directory-list-file (concat dotfiles-dir "ido.last")
-      backup-directory-alist `(("." . ,(expand-file-name
-					     (concat dotfiles-dir "backups")))))
+      make-backup-files nil)
 
 ;; themes
 (setq ns-use-srgb-colorspace t)
