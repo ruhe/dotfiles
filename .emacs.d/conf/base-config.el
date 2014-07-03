@@ -31,7 +31,7 @@
       make-backup-files nil)
 
 ;; themes
-(setq ns-use-srgb-colorspace t)
+(load-theme 'wombat)
 
 (set-default 'imenu-auto-rescan t)
 
