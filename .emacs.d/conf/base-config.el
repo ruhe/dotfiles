@@ -50,6 +50,7 @@
 (require 'dired-x)
 (setq-default dired-omit-files-p t)
 (setq dired-omit-files "^\\.[^.]\\|\\.pyc$")
+(setq dired-listing-switches "-aBhl  --group-directories-first")
 
 (setq-default global-font-lock-mode nil)
 
