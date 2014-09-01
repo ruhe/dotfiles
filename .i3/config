@@ -154,6 +154,8 @@ bar {
         position top
 }
 
+# lock screen
+bindsym $mod+Control+l exec i3lock
 
 # volume control
 bindsym XF86AudioRaiseVolume exec amixer -D pulse set Master 5%+ unmute
@@ -165,12 +167,10 @@ bindsym $mod+y border normal
 bindsym $mod+t border 1pixel
 bindsym $mod+u border none
 # no borders by default
-#new_window 1pixel
+new_window none
 
 
 # Some windows should float
-for_window [class="Skype"] floating enable
-for_window [class="Vlc"] floating enable
 for_window [class="xfce4-notifyd"] floating enable
 
 # Start nm-applet to get appropriate permissions
