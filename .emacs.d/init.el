@@ -10,3 +10,7 @@
 	(concat (concat (getenv "HOME") "/.bin") ":" (getenv "PATH")))
 
 (add-to-list 'load-path (concat dotfiles-dir "/conf"))
+
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
