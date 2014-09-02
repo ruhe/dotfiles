@@ -16,7 +16,6 @@
       echo-keystrokes 0.1
       show-paren-mode t
       x-select-enable-clipboard t
-      font-lock-maximum-decoration t
       inhibit-startup-message t
       initial-scratch-message nil
       initial-major-mode 'text-mode
@@ -31,7 +30,27 @@
       make-backup-files nil)
 
 ;; themes
-(load-theme 'wombat)
+(add-to-list 'default-frame-alist '(foreground-color . "#000000"))
+(add-to-list 'default-frame-alist '(background-color . "#fffed1"))
+
+(defun decolorize-font-lock ()
+  "remove all colors from font-lock faces except comment and warning"
+  (let ((fg (face-attribute 'default :foreground))
+        (bg (face-attribute 'default :background)))
+    (mapc (lambda (face)
+            (when face
+              (set-face-attribute face nil
+                                  :foreground fg
+                                  :background bg)))
+          (mapcar (lambda (f)
+                    (if (and (string-match "^font-lock" (symbol-name f))
+                             (not (string-match "-comment\\|-warning" (symbol-name f))))
+                        f
+                      nil))
+                  (face-list)))))
+
+(decolorize-font-lock)
+
 
 (set-default 'imenu-auto-rescan t)
 
@@ -52,6 +71,5 @@
 (setq dired-omit-files "^\\.[^.]\\|\\.pyc$")
 (setq dired-listing-switches "-aBhl  --group-directories-first")
 
-(setq-default global-font-lock-mode nil)
 
 (provide 'base-config)
