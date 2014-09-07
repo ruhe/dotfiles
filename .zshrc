@@ -1,23 +1,13 @@
-# Path to your oh-my-zsh installation.
+# oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
-
 ZSH_THEME="ruhe"
-#DISABLE_LS_COLORS="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git)
-
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
+# things
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
-# export MANPATH="/usr/local/man:$MANPATH"
-source $HOME/.zprofile
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+if [ -f $HOME/.zprofile ]; then
+    source $HOME/.zprofile
+fi
 
 export EDITOR='emacs'
