@@ -173,9 +173,13 @@ new_window none
 # Some windows should float
 for_window [class="xfce4-notifyd"] floating enable
 
-# Start nm-applet to get appropriate permissions
+# Start daemons
+exec --no-startup-id /usr/bin/xfsettingsd
+exec --no-startup-id /usr/bin/xfce4-volumed
+
+# Start nm-applet
 exec --no-startup-id nm-applet
 
 # Configure input devices
 exec --no-startup-id /usr/bin/setxkbmap -option grp:caps_toggle us,ru
-exec -no-startup-id /usr/bin/synclient TouchpadOff=1
+exec --no-startup-id /usr/bin/synclient TouchpadOff=1
