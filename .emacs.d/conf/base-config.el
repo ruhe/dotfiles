@@ -30,9 +30,6 @@
       make-backup-files nil)
 
 ;; themes
-(add-to-list 'default-frame-alist '(foreground-color . "#000000"))
-(add-to-list 'default-frame-alist '(background-color . "#fffed1"))
-
 (defun decolorize-font-lock ()
   "remove all colors from font-lock faces except comment and warning"
   (let ((fg (face-attribute 'default :foreground))
@@ -44,7 +41,8 @@
                                   :background bg)))
           (mapcar (lambda (f)
                     (if (and (string-match "^font-lock" (symbol-name f))
-                             (not (string-match "-comment\\|-warning" (symbol-name f))))
+                             (not (string-match "-comment\\|-warning"
+						(symbol-name f))))
                         f
                       nil))
                   (face-list)))))
