@@ -10,7 +10,6 @@ Xft.rgba: rgb
 
 URxvt.saveLines: 1000
 URxvt.scrollBar: false
-URxvt.urlLauncher: firefox
 URxvt.matcher.button: 1
 
 URxvt.perl-ext-common: default,matcher,tabbedex
@@ -24,21 +23,21 @@ URxvt.tabbed.tab-bg: 0
 
 URxvt.foreground:   #000000
 URxvt.background:   #fffed1
-URxvt.cursorColor:  #333333
+URxvt.cursorColor:  #111111
 
-URxvt.color0:       #000000
-URxvt.color1:       #000000
-URxvt.color2:       #000000
-URxvt.color3:       #000000
-URxvt.color4:       #000000
-URxvt.color5:       #000000
-URxvt.color6:       #000000
-URxvt.color7:       #000000
-URxvt.color8:       #000000
-URxvt.color9:       #000000
-URxvt.color10:      #000000
-URxvt.color11:      #000000
-URxvt.color12:      #000000
-URxvt.color13:      #000000
-URxvt.color14:      #777777
+URxvt.color0:       #333333
+URxvt.color1:       #111111
+URxvt.color2:       #111111
+URxvt.color3:       #111111
+URxvt.color4:       #666666
+URxvt.color5:       #999999
+URxvt.color6:       #111111
+URxvt.color7:       #111111
+URxvt.color8:       #111111
+URxvt.color9:       #111111
+URxvt.color10:      #111111
+URxvt.color11:      #111111
+URxvt.color12:      #111111
+URxvt.color13:      #111111
+URxvt.color14:      #999999
 URxvt.color15:      #fffed1
