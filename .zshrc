@@ -5,7 +5,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # things
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 if [ -f $HOME/.zprofile ]; then
     source $HOME/.zprofile
 fi
