@@ -4,11 +4,11 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 
-;; Set package sources
-(setq package-archives
-      '(("elpa" . "http://tromey.com/elpa/")
-        ("gnu" . "http://elpa.gnu.org/packages/")
-        ("marmalade" . "http://marmalade-repo.org/packages/")))
+;; Active packages
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(setq package-enable-at-startup nil)
+(package-initialize)
 
 
 ;; IDO mode
@@ -26,19 +26,19 @@
 (setq dired-omit-files "^\\.[^.]\\|\\.pyc$")
 
 
-;; Put whitespace under control
-(require 'whitespace)
-(setq whitespace-line-column 80)
-(setq whitespace-style '(face lines-tail))
-(add-hook 'prog-mode-hook 'whitespace-mode)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-
 ;; Store backups in enterprise-grade storage - /tmp
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
       `((".*" ,temporary-file-directory t)))
+
+
+;; Put whitespace under control
+(setq whitespace-style '(face lines-tail))
+(setq require-final-newline t)
+(add-hook 'python-mode-hook 'whitespace-mode)
+(add-hook 'clojure-mode-hook 'whitespace-mode)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 
 ;; Misc configurations
@@ -68,6 +68,10 @@
 (delete-selection-mode t)
 
 
+;; Custom keys
+(global-set-key [f3] 'kill-this-buffer)
+
+
 ;; No place for colorz in my terminalz
 (defun decolorize-font-lock ()
   "remove all colors from font-lock faces except comment and warning"
@@ -86,9 +90,6 @@
                       nil))
                   (face-list)))))
 
+(global-font-lock-mode 0)
 (set-face-foreground 'font-lock-comment-face "#999999")
 (decolorize-font-lock)
-
-
-;; Custom keys
-(global-set-key [f3] 'kill-this-buffer)
