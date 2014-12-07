@@ -4,13 +4,6 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 
-;; Active packages
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(setq package-enable-at-startup nil)
-(package-initialize)
-
-
 ;; IDO mode
 (setq ido-enable-flex-matching t)
 (setq ido-max-prospects 10)
