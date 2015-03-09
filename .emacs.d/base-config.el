@@ -4,6 +4,13 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 
+;; Setup package repositories
+(setq package-archives
+      '(("elpa" . "http://tromey.com/elpa/")
+	("melpa" . "http://melpa.org/packages/")
+	("marmalade" . "http://marmalade-repo.org/packages/")))
+
+
 ;; IDO mode
 (setq ido-enable-flex-matching t)
 (setq ido-max-prospects 10)
@@ -13,10 +20,14 @@
 (ido-mode t)
 
 
-;; Configure dired to hide boring files
+;; Configure dired:
+;; - to hide boring files
+;; - order by (directory>file, name)
 (require 'dired-x)
 (setq-default dired-omit-files-p t)
 (setq dired-omit-files "^\\.[^.]\\|\\.pyc$")
+(setq insert-directory-program "gls")
+(setq dired-listing-switches "-aBhl --group-directories-first")
 
 
 ;; Store backups in enterprise-grade storage - /tmp
@@ -65,24 +76,20 @@
 (global-set-key [f3] 'kill-this-buffer)
 
 
-;; No place for colorz in my terminalz
-(defun decolorize-font-lock ()
-  "remove all colors from font-lock faces except comment and warning"
-  (let ((fg (face-attribute 'default :foreground))
-        (bg (face-attribute 'default :background)))
-    (mapc (lambda (face)
-            (when face
-              (set-face-attribute face nil
-                                  :foreground fg
-                                  :background bg)))
-          (mapcar (lambda (f)
-                    (if (and (string-match "^font-lock" (symbol-name f))
-                             (not (string-match "-comment\\|-warning"
-                                               (symbol-name f))))
-                        f
-                      nil))
-                  (face-list)))))
+;; Color theme adjustments
+(load-theme 'wombat)
 
-(global-font-lock-mode 0)
-(set-face-foreground 'font-lock-comment-face "#999999")
-(decolorize-font-lock)
+
+;; Parentheses don't matter
+(defface paren-face
+  '((((class color) (background dark))
+     (:foreground "grey20"))
+    (((class color) (background light))
+     (:foreground "grey20")))
+  "Face used to dim parentheses.")
+
+(defun dim-parens ()
+  (font-lock-add-keywords nil '(("(\\|)" . 'paren-face))))
+
+(add-hook 'clojure-mode-hook 'dim-parens)
+(add-hook 'emacs-lisp-mode-hook 'dim-parens)
