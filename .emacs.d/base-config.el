@@ -83,9 +83,9 @@
 ;; Parentheses don't matter
 (defface paren-face
   '((((class color) (background dark))
-     (:foreground "grey20"))
+     (:foreground "grey40"))
     (((class color) (background light))
-     (:foreground "grey20")))
+     (:foreground "grey40")))
   "Face used to dim parentheses.")
 
 (defun dim-parens ()
@@ -93,3 +93,9 @@
 
 (add-hook 'clojure-mode-hook 'dim-parens)
 (add-hook 'emacs-lisp-mode-hook 'dim-parens)
+
+;; Configure precious Clojure
+(setq cider-show-error-buffer nil)
+(setq cider-repl-use-clojure-font-lock t)
+(add-hook 'cider-repl-mode-hook #'company-mode)
+(add-hook 'cider-mode-hook #'company-mode)
