@@ -94,13 +94,12 @@
 
 (add-hook 'clojure-mode-hook 'dim-parens)
 (add-hook 'emacs-lisp-mode-hook 'dim-parens)
-(add-hook 'cider-repl-mode-hook #'paredit-mode)
-(add-hook 'cider-mode-hook #'paredit-mode)
 
 ;; Configure precious Clojure
 (setq cider-show-error-buffer nil)
 (setq cider-repl-use-clojure-font-lock t)
-
+(add-hook 'cider-repl-mode-hook #'paredit-mode)
+(add-hook 'cider-mode-hook #'paredit-mode)
 (add-hook 'cider-repl-mode-hook
 	  (lambda ()
 	    (local-set-key (kbd "C-c M-o") #'cider-repl-clear-buffer)))
