@@ -1,3 +1,4 @@
+
 ;; Hide GUI things
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -5,10 +6,10 @@
 
 
 ;; Setup package repositories
-(setq package-archives
-      '(("elpa" . "http://tromey.com/elpa/")
-	("melpa" . "http://melpa.org/packages/")
-	("marmalade" . "http://marmalade-repo.org/packages/")))
+(add-to-list 'package-archives
+	     '("trelpa" . "http://tromey.com/elpa/"))
+(add-to-list 'package-archives
+	     '("melpa" . "http://melpa.org/packages/"))
 
 
 ;; IDO mode
@@ -93,9 +94,13 @@
 
 (add-hook 'clojure-mode-hook 'dim-parens)
 (add-hook 'emacs-lisp-mode-hook 'dim-parens)
+(add-hook 'cider-repl-mode-hook #'paredit-mode)
+(add-hook 'cider-mode-hook #'paredit-mode)
 
 ;; Configure precious Clojure
 (setq cider-show-error-buffer nil)
 (setq cider-repl-use-clojure-font-lock t)
-(add-hook 'cider-repl-mode-hook #'company-mode)
-(add-hook 'cider-mode-hook #'company-mode)
+
+(add-hook 'cider-repl-mode-hook
+	  (lambda ()
+	    (local-set-key (kbd "C-c M-o") #'cider-repl-clear-buffer)))
