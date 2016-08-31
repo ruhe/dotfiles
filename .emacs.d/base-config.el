@@ -27,7 +27,9 @@
 (require 'dired-x)
 (setq-default dired-omit-files-p t)
 (setq dired-omit-files "^\\.[^.]\\|\\.pyc$")
-(setq insert-directory-program "gls")
+(if (eq system-type 'darwin)
+  (setq insert-directory-program "gls")
+)
 (setq dired-listing-switches "-aBhl --group-directories-first")
 
 
