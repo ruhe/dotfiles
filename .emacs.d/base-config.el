@@ -79,8 +79,13 @@
 (global-set-key [f3] 'kill-this-buffer)
 
 
-;; Color theme adjustments
-(load-theme 'wombat)
+;; These days I'm using color scheme from my terminal
+(setq-default global-font-lock-mode nil)
+(defun on-after-init ()
+  (unless (display-graphic-p (selected-frame))
+    (set-face-background 'default "unspecified-bg" (selected-frame))))
+
+(add-hook 'window-setup-hook 'on-after-init)
 
 
 ;; Parentheses don't matter
