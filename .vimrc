@@ -1,4 +1,5 @@
 set nocompatible          " get rid of Vi compatibility mode. SET FIRST!
+set backspace=2           " make backspace work like most other apps
 set laststatus=2          " last window always has a statusline
 filetype indent on        " activates indenting for files
 set nohlsearch            " Don't continue to highlight searched phrases.
