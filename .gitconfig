@@ -1,12 +1,11 @@
 [user]
 	name = Ruslan Kamaldinov
 	email = rkamaldinov@mirantis.com
-	signingkey = C135ADD6
 
 [core]
 	editor = emacs
 	autocrlf = input
-	excludesfile = /Users/ruhe/.gitignore_global
+	excludesfile = ~/.gitignore_global
 
 [color]
     ui = auto
