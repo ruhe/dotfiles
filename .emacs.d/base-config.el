@@ -1,4 +1,3 @@
-
 ;; Hide GUI things
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -7,10 +6,7 @@
 
 ;; Setup package repositories
 (add-to-list 'package-archives
-	     '("trelpa" . "http://tromey.com/elpa/"))
-(add-to-list 'package-archives
 	     '("melpa" . "http://melpa.org/packages/"))
-
 
 ;; IDO mode
 (setq ido-enable-flex-matching t)
@@ -25,6 +21,7 @@
 ;; - to hide boring files
 ;; - order by (directory>file, name)
 (require 'dired-x)
+(add-hook 'dired-mode-hook #'hl-line-mode)
 (setq-default dired-omit-files-p t)
 (setq dired-omit-files "^\\.[^.]\\|\\.pyc$")
 (if (eq system-type 'darwin)
@@ -74,19 +71,11 @@
 ;; Allow to replace highlighted text
 (delete-selection-mode t)
 
-
 ;; Custom keys
 (global-set-key [f3] 'kill-this-buffer)
 
-
-;; These days I'm using color scheme from my terminal
-(setq-default global-font-lock-mode nil)
-(defun on-after-init ()
-  (unless (display-graphic-p (selected-frame))
-    (set-face-background 'default "unspecified-bg" (selected-frame))))
-
-(add-hook 'window-setup-hook 'on-after-init)
-
+;; Color scheme
+(load-theme 'wombat)
 
 ;; Parentheses don't matter
 (defface paren-face
