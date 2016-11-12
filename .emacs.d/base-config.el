@@ -40,8 +40,6 @@
 ;; Put whitespace under control
 (setq whitespace-style '(face lines-tail))
 (setq require-final-newline t)
-(add-hook 'python-mode-hook 'whitespace-mode)
-(add-hook 'clojure-mode-hook 'whitespace-mode)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 
@@ -94,6 +92,9 @@
 ;; Configure precious Clojure
 (setq cider-show-error-buffer nil)
 (setq cider-repl-use-clojure-font-lock t)
+(setq cider-repl-display-help-banner nil)
+(setq cider-cljs-lein-repl
+      "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))")
 (add-hook 'cider-repl-mode-hook #'paredit-mode)
 (add-hook 'cider-mode-hook #'paredit-mode)
 (add-hook 'cider-repl-mode-hook
