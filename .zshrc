@@ -1,6 +1,6 @@
 # oh-my-zsh
 export ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="ruhe"
+ZSH_THEME="ruhe-bw"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
