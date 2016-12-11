@@ -1,6 +1,7 @@
 [user]
 	name = Ruslan Kamaldinov
 	useconfigonly = true
+	email = rkamaldinov@mirantis.com
 
 [core]
 	editor = emacs
