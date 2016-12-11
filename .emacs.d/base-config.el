@@ -74,6 +74,9 @@
 
 ;; Color scheme
 (load-theme 'wombat)
+;; I don't like underline in hl-line
+(custom-set-faces '(hl-line ((t (:underline nil
+				 :background "#333")))))
 
 ;; Parentheses don't matter
 (defface paren-face
