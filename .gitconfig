@@ -22,9 +22,11 @@
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     ls = ls-files
+    shorty = status --short --branch
 
     # Show files ignored by git:
     ign = ls-files -o -i --exclude-standard
 
 [gitreview]
 	username = ruhe
+	username = rkamaldinov
