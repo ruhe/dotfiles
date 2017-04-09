@@ -69,6 +69,9 @@
 ;; Allow to replace highlighted text
 (delete-selection-mode t)
 
+;; Disable auto-indent
+(electric-indent-mode nil)
+
 ;; Custom keys
 (global-set-key [f3] 'kill-this-buffer)
 
@@ -91,6 +94,7 @@
 
 (add-hook 'clojure-mode-hook 'dim-parens)
 (add-hook 'emacs-lisp-mode-hook 'dim-parens)
+(add-hook 'scheme-mode-hook 'dim-parens)
 
 ;; Configure precious Clojure
 (setq cider-show-error-buffer nil)
