@@ -1,0 +1,63 @@
+#!/bin/bash
+
+set -e
+
+RED='\033[0;31m'
+GREY='\033[0;37m'
+GREEN='\033[1;32m'
+NC='\033[0m' # No Color
+
+pushd () {
+    command pushd "$@" > /dev/null
+}
+
+popd () {
+    command popd "$@" > /dev/null
+}
+
+LOG_INFO() {
+    echo -e "${GREY}[INFO]${NC} $*"
+}
+
+LOG_DEBUG() {
+    echo -e "[DEBUG] $*"
+}
+
+LOG_ERROR() {
+    echo -e "${RED}[ERROR]${NC} $*" >&2
+}
+
+git () {
+    LOG_INFO "Execute: ${GREEN}git $@${NC}"
+    command git "$@"
+}
+
+for repo in `find . -name .git -type d -prune | sed 's/\.git//g' | grep -v '\.tox'`
+do
+    path=`realpath ${repo}`
+    pushd $path
+
+    LOG_INFO "Repository: $path"
+
+    if git remote -v | grep --quiet origin; then
+        remote="origin"
+    elif git remote -v | grep --quiet gerrit; then
+        remote="gerrit"
+    else
+        LOG_ERROR "No remotes were found."
+        exit 1
+    fi
+
+    remote_url=$(git remote -v | grep $remote | head -n 1 | awk '{print $2}')
+    LOG_INFO "Updating from remote: ${remote_url}"
+    git fetch $remote
+    git rebase $remote master
+
+    if [ -f ".gitmodules" ]; then
+        LOG_INFO "Updating submodules"
+        git submodule init
+        git submodule update
+    fi
+
+    popd
+done
