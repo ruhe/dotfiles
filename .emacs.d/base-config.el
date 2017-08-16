@@ -70,7 +70,7 @@
 (delete-selection-mode t)
 
 ;; Disable auto-indent
-(electric-indent-mode nil)
+(add-hook 'after-change-major-mode-hook (lambda() (electric-indent-mode -1)))
 
 ;; Custom keys
 (global-set-key [f3] 'kill-this-buffer)
