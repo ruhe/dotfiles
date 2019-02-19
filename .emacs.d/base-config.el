@@ -3,7 +3,6 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
-
 ;; Setup package repositories
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.org/packages/"))
@@ -15,7 +14,6 @@
 (setq ido-use-filename-at-point 'guess)
 (setq ido-everywhere t)
 (ido-mode t)
-
 
 ;; Configure dired:
 ;; - to hide boring files
@@ -69,6 +67,10 @@
 ;; Allow to replace highlighted text
 (delete-selection-mode t)
 
+;; Word wrap
+(visual-line-mode t)
+(global-visual-line-mode t)
+
 ;; Disable auto-indent
 (add-hook 'after-change-major-mode-hook (lambda() (electric-indent-mode -1)))
 
@@ -79,14 +81,14 @@
 (load-theme 'wombat)
 ;; I don't like underline in hl-line
 (custom-set-faces '(hl-line ((t (:underline nil
-				 :background "#333")))))
+				 :background "#444444")))))
 
 ;; Parentheses don't matter
 (defface paren-face
   '((((class color) (background dark))
-     (:foreground "grey40"))
+     (:foreground "#aaa"))
     (((class color) (background light))
-     (:foreground "grey40")))
+     (:foreground "#aaa")))
   "Face used to dim parentheses.")
 
 (defun dim-parens ()
@@ -107,3 +109,21 @@
 (add-hook 'cider-repl-mode-hook
 	  (lambda ()
 	    (local-set-key (kbd "C-c M-o") #'cider-repl-clear-buffer)))
+
+;; Move up/down the history in cider repl
+(define-key input-decode-map "\e[1;5A" [C-up])
+(define-key input-decode-map "\e[1;5B" [C-down])
+
+
+;; Org Mode
+(add-hook 'org-mode-hook 'turn-on-flyspell)
+
+;; Misc
+(defun json-format ()
+  (interactive)
+  (save-excursion
+    (shell-command-on-region (region-beginning)
+                             (region-end)
+                             "python -m json.tool"
+                             (buffer-name)
+                             t)))

@@ -1,7 +1,7 @@
 [user]
-	name = Ruslan Kamaldinov
+	name = ruhe
 	useconfigonly = true
-	email = rkamaldinov@mirantis.com
+	email = r.kamaldinov@gmail.com
 
 [core]
 	editor = emacs
