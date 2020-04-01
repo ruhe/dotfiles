@@ -26,7 +26,3 @@
 
     # Show files ignored by git:
     ign = ls-files -o -i --exclude-standard
-
-[gitreview]
-	username = ruhe
-	username = rkamaldinov
