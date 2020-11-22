@@ -19,10 +19,6 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec urxvt
 
-# start a web broweser
-bindsym $mod+g exec google-chrome
-
-
 # kill focused window
 bindsym $mod+q kill
 
@@ -75,7 +71,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+#bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -150,10 +146,10 @@ bar {
 # lock screen
 bindsym $mod+Control+l exec i3lock
 
-# volume control
-bindsym XF86AudioRaiseVolume exec amixer -D pulse set Master 5%+ unmute
-bindsym XF86AudioLowerVolume exec amixer -D pulse set Master 5%- unmute
-bindsym XF86AudioMute exec amixer -D pulse set Master Playback Switch toggle
+# volume buttons
+bindsym Pause exec amixer -D pulse set Master 5%+ unmute
+bindsym Print exec amixer -D pulse set Master 5%- unmute
+
 
 # adjustable borders
 bindsym $mod+y border normal
@@ -162,17 +158,9 @@ bindsym $mod+u border none
 # no borders by default
 new_window none
 
-
-# Some windows should float
-for_window [class="xfce4-notifyd"] floating enable
-
 # Start daemons
-exec --no-startup-id /usr/bin/xfsettingsd
-exec --no-startup-id /usr/bin/xfce4-volumed
-
-# Start nm-applet
+exec --no-startup-id xrdb -merge ~/.Xresources
+exec --no-startup-id xmodmap ~/.Xmodmap
+exec --no-startup-id compton --config ~/.config/compton.conf -b
+exec --no-startup-id /usr/bin/dropbox start
 exec --no-startup-id nm-applet
-
-# Configure input devices
-exec --no-startup-id /usr/bin/setxkbmap -option grp:caps_toggle us,ru
-exec --no-startup-id /usr/bin/synclient TouchpadOff=1
