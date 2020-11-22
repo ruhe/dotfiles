@@ -1,11 +1,12 @@
+
 ;; Hide GUI things
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
-;; Setup package repositories
-(add-to-list 'package-archives
-	     '("melpa" . "http://melpa.org/packages/"))
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
 
 ;; IDO mode
 (setq ido-enable-flex-matching t)
@@ -78,25 +79,7 @@
 (global-set-key [f3] 'kill-this-buffer)
 
 ;; Color scheme
-(load-theme 'wombat)
-;; I don't like underline in hl-line
-(custom-set-faces '(hl-line ((t (:underline nil
-				 :background "#444444")))))
-
-;; Parentheses don't matter
-(defface paren-face
-  '((((class color) (background dark))
-     (:foreground "#aaa"))
-    (((class color) (background light))
-     (:foreground "#aaa")))
-  "Face used to dim parentheses.")
-
-(defun dim-parens ()
-  (font-lock-add-keywords nil '(("(\\|)" . 'paren-face))))
-
-(add-hook 'clojure-mode-hook 'dim-parens)
-(add-hook 'emacs-lisp-mode-hook 'dim-parens)
-(add-hook 'scheme-mode-hook 'dim-parens)
+(load-theme 'wombat t)
 
 ;; Configure precious Clojure
 (setq cider-show-error-buffer nil)
